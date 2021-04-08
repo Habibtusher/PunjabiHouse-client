@@ -11,9 +11,10 @@ const [value,setValue] = useState();
 const history = useHistory();
 
 
-    const handleBuy = (product)=>{
+    const handleBuy = (id)=>{
 
-        if(loggedInUser.email){
+        history.push(`/productList/${id}`);
+        
 
             const newBuy = {...loggedInUser,...product};
             console.log(newBuy);
@@ -26,15 +27,9 @@ const history = useHistory();
                 .then(data => {
                     console.log(data);
                 })
-                history.push('/productList')
-        }
 
-        else{
-            history.push('/productList')
-        }
-      
-       
-       
+        
+    
     }
     return (
 
@@ -43,9 +38,7 @@ const history = useHistory();
             <h5 style={{ marginBottom:'10px'}}>{product.name}</h5>
             <div style={{ width:'90%'}}>
                 <div style={{ float: 'left',marginTop:'8px'}}> <h6 >ট {product.price}</h6> </div>
-                <div style={{ float: 'right'}}><button onClick={() =>handleBuy(product)
-               
-                } className="btn btn-primary">Buy Now</button></div>
+                <div style={{ float: 'right'}}><button onClick={() =>handleBuy(product._id)} className="btn btn-primary">Buy Now</button></div>
             </div>
             
             
